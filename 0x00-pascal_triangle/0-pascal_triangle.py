@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-""" 
+'''
     Module that prints list of lists of
     integers representing Pascals triangle
-"""
+'''
 
 from typing import List
 
