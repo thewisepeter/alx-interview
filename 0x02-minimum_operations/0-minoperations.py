@@ -5,8 +5,6 @@
 def minOperations(n):
     ''' function to find min operations '''
     # If n is less than 2, it's impossible to achieve
-    if not isinstance(n, int):
-        return 0
     
     if n < 2:
         return 0
