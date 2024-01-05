@@ -17,10 +17,8 @@
 
 def validUTF8(data):
     '''
-        determines if a given data set represents a valid UTF-8
-        encoding
+        Helper function to check if a byte is a valid UTF-8 continuation byte
     '''
-
     def isContinuation(byte):
         return (byte & 0b11000000) == 0b10000000
 
