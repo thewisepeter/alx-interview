@@ -4,7 +4,7 @@ const request = require('request');
 
 // Function to fetch characters based on Movie ID
 function getCharacters (movieId) {
-  const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
+  const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
   // Make a GET request to the Star Wars API films endpoint
   request(apiUrl, { json: true }, (error, response, body) => {
