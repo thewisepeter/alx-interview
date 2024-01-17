@@ -1,11 +1,10 @@
 #!/usr/bin/node
-
 // Import required modules
 const request = require('request');
 
 // Function to fetch characters based on Movie ID
 function getCharacters (movieId) {
-  const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
+  const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
 
   // Make a GET request to the Star Wars API films endpoint
   request(apiUrl, { json: true }, (error, response, body) => {
@@ -17,16 +16,30 @@ function getCharacters (movieId) {
     // Extract the characters array from the response
     const characters = body.characters;
 
-    // Print each character name
-    characters.forEach((characterUrl) => {
-      request(characterUrl, { json: true }, (characterError, characterResponse, characterBody) => {
-        if (characterError) {
-          console.error('Error fetching character data:', characterError.message);
-          return;
-        }
-        console.log(characterBody.name);
-      });
-    });
+    // Print each character name in order
+    printCharactersInOrder(characters, 0);
+  });
+}
+
+// Recursive function to print characters in order
+function printCharactersInOrder (characters, index) {
+  if (index >= characters.length) {
+    // All characters printed, exit the function
+    return;
+  }
+
+  const characterUrl = characters[index];
+
+  // Make a request for the character
+  request(characterUrl, { json: true }, (characterError, characterResponse, characterBody) => {
+    if (characterError) {
+      console.error('Error fetching character data:', characterError.message);
+    } else {
+      console.log(characterBody.name);
+    }
+
+    // Move to the next character in the list
+    printCharactersInOrder(characters, index + 1);
   });
 }
 
