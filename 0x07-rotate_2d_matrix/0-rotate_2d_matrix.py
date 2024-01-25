@@ -37,7 +37,3 @@ def rotate_2d_matrix(matrix: list) -> None:
     '''
     transpose_in_place(matrix)
     reverse_matrix(matrix)
-
-
-if __name__ == "__main__":
-    rotate_2d_matrix()
