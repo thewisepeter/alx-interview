@@ -11,8 +11,6 @@ def transpose_in_place(matrix: list) -> list:
             # Swap elements (i, j) and (j, i)
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
-    return matrix
-
 
 def reverse_matrix(matrix: list) -> list:
     '''
@@ -28,8 +26,6 @@ def reverse_matrix(matrix: list) -> list:
                 matrix[j][i]
             )
 
-    return matrix
-
 
 def rotate_2d_matrix(matrix: list) -> list:
     '''
@@ -37,7 +33,6 @@ def rotate_2d_matrix(matrix: list) -> list:
     '''
     x = transpose_in_place(matrix)
     result = reverse_matrix(x)
-    return result
 
 
 if __name__ == "__main__":
