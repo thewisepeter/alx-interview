@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-def transpose_in_place(matrix: list) -> list:
+def transpose_in_place(matrix: list) -> None:
     '''
         Transposes a matrix in-place
     '''
@@ -12,7 +12,7 @@ def transpose_in_place(matrix: list) -> list:
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
 
-def reverse_matrix(matrix: list) -> list:
+def reverse_matrix(matrix: list) -> None:
     '''
         reverses a list
     '''
@@ -27,13 +27,12 @@ def reverse_matrix(matrix: list) -> list:
             )
 
 
-def rotate_2d_matrix(matrix: list) -> list:
+def rotate_2d_matrix(matrix: list) -> None:
     '''
         rotates a 2d matrix
     '''
-    x = transpose_in_place(matrix)
-    result = reverse_matrix(x)
-
+    transpose_in_place(matrix)
+    reverse_matrix(matrix)
 
 if __name__ == "__main__":
     rotate_2d_matrix()
