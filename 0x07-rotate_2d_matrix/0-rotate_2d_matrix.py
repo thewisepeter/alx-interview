@@ -39,10 +39,6 @@ def rotate_2d_matrix(matrix: list) -> None:
     reverse_matrix(matrix)
 '''
 
-#!/usr/bin/python3
-"""_summary_
-"""
-
 
 def transpose_matrix(matrix, n):
     """_summary_
