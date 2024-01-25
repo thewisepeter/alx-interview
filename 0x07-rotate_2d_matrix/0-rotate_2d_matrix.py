@@ -23,12 +23,8 @@ def reverse_matrix(matrix: list) -> None:
 
     rows, cols = len(matrix), len(matrix[0])
 
-    for i in range(cols):
-        for j in range(rows // 2):
-            matrix[j][i], matrix[rows - j - 1][i] = (
-                matrix[rows - j - 1][i],
-                matrix[j][i]
-            )
+    for row in matrix:
+        row.reverse()
 
 
 def rotate_2d_matrix(matrix: list) -> None:
