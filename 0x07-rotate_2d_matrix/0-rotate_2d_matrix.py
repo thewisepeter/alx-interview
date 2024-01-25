@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+'''
+    module that reverses a matrix in place
+'''
+
 
 def transpose_in_place(matrix: list) -> None:
     '''
