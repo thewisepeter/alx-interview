@@ -42,63 +42,92 @@
 '''
 
 
-def is_prime(num):
-    '''
-        checks if a number is a prime number
-    '''
-    if num < 2:
-        return False
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+# def is_prime(num):
+#     '''
+#         checks if a number is a prime number
+#     '''
+#     if num < 2:
+#         return False
+#     for i in range(2, int(num ** 0.5) + 1):
+#         if num % i == 0:
+#             return False
+#     return True
 
+
+# def isWinner(x, nums):
+#     '''
+#         determines who the winner is
+#     '''
+#     maria_wins = 0
+#     ben_wins = 0
+
+#     for n in nums:
+#         # Initialize a set of integers from 1 to n
+#         remaining_numbers = set(range(1, n + 1))
+
+#         # While there are still integers in the set
+#         while remaining_numbers:
+#             # Maria's turn
+#             maria_moves = False
+#             for num in sorted(remaining_numbers):
+#                 if is_prime(num):
+#                     # Remove the prime number and its multiples
+#                     for multiple in range(num, n + 1, num):
+#                         remaining_numbers.discard(multiple)
+#                     maria_moves = True
+#                     break
+#             if not maria_moves:
+#                 # Maria cannot make a move, Ben wins
+#                 ben_wins += 1
+#                 break
+
+#             # Ben's turn
+#             ben_moves = False
+#             for num in sorted(remaining_numbers):
+#                 if is_prime(num):
+#                     # Remove the prime number and its multiples
+#                     for multiple in range(num, n + 1, num):
+#                         remaining_numbers.discard(multiple)
+#                     ben_moves = True
+#                     break
+#             if not ben_moves:
+#                 # Ben cannot make a move, Maria wins
+#                 maria_wins += 1
+#                 break
+
+#     # Determine the winner
+#     if maria_wins > ben_wins:
+#         return "Maria"
+#     elif maria_wins < ben_wins:
+#         return "Ben"
+#     else:
+#         return None
 
 def isWinner(x, nums):
     '''
-        determines who the winner is
+        function that checks for the winner
     '''
-    maria_wins = 0
-    ben_wins = 0
-
-    for n in nums:
-        # Initialize a set of integers from 1 to n
-        remaining_numbers = set(range(1, n + 1))
-
-        # While there are still integers in the set
-        while remaining_numbers:
-            # Maria's turn
-            maria_moves = False
-            for num in sorted(remaining_numbers):
-                if is_prime(num):
-                    # Remove the prime number and its multiples
-                    for multiple in range(num, n + 1, num):
-                        remaining_numbers.discard(multiple)
-                    maria_moves = True
-                    break
-            if not maria_moves:
-                # Maria cannot make a move, Ben wins
-                ben_wins += 1
-                break
-
-            # Ben's turn
-            ben_moves = False
-            for num in sorted(remaining_numbers):
-                if is_prime(num):
-                    # Remove the prime number and its multiples
-                    for multiple in range(num, n + 1, num):
-                        remaining_numbers.discard(multiple)
-                    ben_moves = True
-                    break
-            if not ben_moves:
-                # Ben cannot make a move, Maria wins
-                maria_wins += 1
-                break
-
-    # Determine the winner
-    if maria_wins > ben_wins:
-        return "Maria"
-    elif maria_wins < ben_wins:
-        return "Ben"
-    else:
+    if not nums or x < 1:
         return None
+    max_num = max(nums)
+
+    my_filter = [True for _ in range(max(max_num + 1, 2))]
+    for i in range(2, int(pow(max_num, 0.5)) + 1):
+        if not my_filter[i]:
+            continue
+        for j in range(i * i, max_num + 1, i):
+            my_filter[j] = False
+    my_filter[0] = my_filter[1] = False
+    y = 0
+    for i in range(len(my_filter)):
+        if my_filter[i]:
+            y += 1
+        my_filter[i] = y
+    player1 = 0
+    for x in nums:
+        player1 += my_filter[x] % 2 == 1
+    if player1 * 2 == len(nums):
+        return None
+    if player1 * 2 > len(nums):
+        return "Maria"
+    return "Ben"
