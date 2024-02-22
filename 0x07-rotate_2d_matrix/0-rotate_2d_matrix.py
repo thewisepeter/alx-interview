@@ -12,7 +12,7 @@ def rotate_2d_matrix(matrix):
     """
     if len(matrix) <= 0:
         return
-    if type(matrix) != list:
+    if not isinstance(matrix, list):
         return
     if not all(isinstance(row, list) for row in matrix):
         return
@@ -22,4 +22,3 @@ def rotate_2d_matrix(matrix):
             matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
     for i in range(len(matrix)):
         matrix[i] = matrix[i][::-1]
-    
